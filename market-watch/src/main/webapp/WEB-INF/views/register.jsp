@@ -16,14 +16,14 @@
 	
 	<body>
 		<div class="container">
-			<form class="form-front" action="<%=request.getContextPath()%>/register" method="post">
+			<form class="form-front" action="<%=request.getContextPath()%>/register" method="post" modelattribute="user">
 				<h2 class="form-front-heading">Register</h2>
 				<label for="inputName" class="sr-only">Name</label>
-				<input type="text" id="inputName" class="form-control" placeholder="Name" required autofocus>
+				<input name="name" type="text" id="inputName" class="form-control" placeholder="Name" autofocus>
 				<label for="inputUsername" class="sr-only">Username</label>
-				<input type="text" id="inputUsername" class="form-control" placeholder="Username">
+				<input name="username" type="text" id="inputUsername" class="form-control" placeholder="Username">
 				<label for="inputPassword" class="sr-only">Password</label>
-				<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+				<input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password">
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 			</form>
 		</div> <!-- /container -->

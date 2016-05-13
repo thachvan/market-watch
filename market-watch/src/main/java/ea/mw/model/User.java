@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class User {
@@ -21,11 +22,14 @@ public class User {
 	@GeneratedValue
 	private int id;
 
+	@NotEmpty
 	private String name;
-	
+
 	@Column(unique = true)
+	@NotEmpty
 	private String username;
-	
+
+	@NotEmpty
 	private String password;
 
 	@OneToMany
@@ -65,5 +69,15 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("name='").append(name).append("', username='")
+				.append(username).append("', password='").append(password)
+				.append("'");
+		
+		return sb.toString();
 	}
 }
