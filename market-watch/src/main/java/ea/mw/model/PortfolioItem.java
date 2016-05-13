@@ -1,5 +1,6 @@
 package ea.mw.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,6 +23,7 @@ public class PortfolioItem {
 	@JoinColumn(name = "symbol_id")
 	private Symbol symbol;
 
+	@Column(name="original_price")
 	private double orginalPrice;
 	private double volume;
 

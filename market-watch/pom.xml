@@ -71,6 +71,7 @@
     	<version>5.1.30</version>
     </dependency>
   </dependencies>
+  
   <build>
     <finalName>market-watch</finalName>
   </build>
