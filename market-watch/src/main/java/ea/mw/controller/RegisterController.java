@@ -19,20 +19,18 @@ public class RegisterController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String register(@Valid User user, BindingResult result, ModelMap modelMap) {
+	public String register(@Valid User user, BindingResult bindingResult, ModelMap modelMap) {
 		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!");
 		System.out.println(user);
 		
-		String view;
-		
-		if (!result.hasErrors()) {
+		if (!bindingResult.hasErrors()) {
 			System.out.println("No errors");
-			view = "login";
+			return "redirect:/login";
 		}
-		else {
-			view = "register";
-		}
+
+		System.out.println("Has errors");
+		modelMap.put(BindingResult.class.getName() + ".user", bindingResult);
 		
-		return view;
+		return "register";
 	}
 }

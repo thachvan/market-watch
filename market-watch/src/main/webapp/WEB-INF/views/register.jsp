@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 
 <html>
@@ -16,16 +18,19 @@
 	
 	<body>
 		<div class="container">
-			<form class="form-front" action="<%=request.getContextPath()%>/register" method="post" modelattribute="user">
+			<form:form class="form-front" action="/market-watch/register" method="post">
 				<h2 class="form-front-heading">Register</h2>
 				<label for="inputName" class="sr-only">Name</label>
 				<input name="name" type="text" id="inputName" class="form-control" placeholder="Name" autofocus>
+				<form:errors path="*" cssClass="error"/>
 				<label for="inputUsername" class="sr-only">Username</label>
 				<input name="username" type="text" id="inputUsername" class="form-control" placeholder="Username">
+				<form:errors path="username" cssClass="error"/>
 				<label for="inputPassword" class="sr-only">Password</label>
 				<input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password">
+				<form:errors path="password" cssClass="error"/>
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-			</form>
+			</form:form>
 		</div> <!-- /container -->
 </body>
 
