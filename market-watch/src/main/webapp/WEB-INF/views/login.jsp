@@ -20,15 +20,15 @@
 	
 	<body>
 		<div class="container">
-			<form:form class="form-front" action="/market-watch/login" method="post">
+			<form class="form-front" action="/market-watch/login" method="post">
 				<h2 class="form-front-heading">Log in</h2>
 				<c:if test="${message != null}">
-					<form:label path="message" class="message">${message}</form:label>
+					<label class="message">${message}</label>
 				</c:if>
 				<label for="inputUsername" class="sr-only">Username</label>
-				<input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+				<input type="text" id="inputUsername" class="form-control" placeholder="Username" autofocus value="${username}">
 				<label for="inputPassword" class="sr-only">Password</label>
-				<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+				<input type="password" id="inputPassword" class="form-control" placeholder="Password">
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" value="remember-me"> Remember me
@@ -37,7 +37,7 @@
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
 				<br>
 				<a href="<%=request.getContextPath()%>/register">Create new account</a>
-			</form:form>
+			</form>
 		</div> <!-- /container -->
 </body>
 

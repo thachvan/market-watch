@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ea.mw.model.User;
+import ea.mw.service.UserService;
 import ea.mw.validator.UserValidator;
 
 @Controller
@@ -16,6 +17,8 @@ public class RegisterController {
 
 	@Autowired
 	UserValidator userValidator;
+	@Autowired
+	UserService userService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String displayRegisterForm() {
@@ -23,12 +26,16 @@ public class RegisterController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String register(User user, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+	public String register(User user, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes) {
 		userValidator.validate(user, bindingResult);
 
 		if (!bindingResult.hasErrors()) {
-			redirectAttributes.addFlashAttribute("username", user.getUsername());
-			redirectAttributes.addFlashAttribute("message", "Account has been created successfully");
+			userService.addUser(user);
+			redirectAttributes.addFlashAttribute("username",
+					user.getUsername());
+			redirectAttributes.addFlashAttribute("message",
+					"Account has been created successfully");
 			return "redirect:/login";
 		}
 
