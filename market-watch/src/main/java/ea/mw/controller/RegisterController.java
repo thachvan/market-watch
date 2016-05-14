@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ea.mw.model.User;
+import ea.mw.model.User.Role;
 import ea.mw.service.UserService;
 import ea.mw.validator.UserValidator;
 
@@ -31,6 +32,7 @@ public class RegisterController {
 		userValidator.validate(user, bindingResult);
 
 		if (!bindingResult.hasErrors()) {
+			user.setRole(Role.USER);
 			userService.addUser(user);
 			redirectAttributes.addFlashAttribute("username",
 					user.getUsername());

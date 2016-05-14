@@ -14,7 +14,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class User {
-	private enum Role {
+	public enum Role {
 		USER, UPDATER
 	};
 
