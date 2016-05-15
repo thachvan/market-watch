@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class PortfolioController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String displayPortfolio() {
-		return "login";
+		return "portfolio";
 	}
 }

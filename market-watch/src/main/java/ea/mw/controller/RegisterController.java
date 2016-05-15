@@ -32,7 +32,8 @@ public class RegisterController {
 		userValidator.validate(user, bindingResult);
 
 		if (!bindingResult.hasErrors()) {
-			user.setRole(Role.USER);
+			user.setAuthority(Role.ROLE_USER);
+			user.setEnabled(true);
 			userService.addUser(user);
 			redirectAttributes.addFlashAttribute("username",
 					user.getUsername());

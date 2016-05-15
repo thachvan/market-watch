@@ -15,7 +15,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class User {
 	public enum Role {
-		USER, UPDATER
+		ROLE_USER, ROLE_UPDATER
 	};
 
 	@Id
@@ -37,7 +37,10 @@ public class User {
 	private List<PortfolioItem> portfolio;
 
 	@Enumerated(EnumType.STRING)
-	private Role role;
+	private Role authority;
+
+	@Column(nullable = true)
+	boolean enabled;
 
 	public String getName() {
 		return name;
@@ -55,12 +58,12 @@ public class User {
 		this.username = username;
 	}
 
-	public Role getRole() {
-		return role;
+	public Role getAuthority() {
+		return authority;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setAuthority(Role authority) {
+		this.authority = authority;
 	}
 
 	public String getPassword() {
@@ -71,13 +74,21 @@ public class User {
 		this.password = password;
 	}
 
+	public boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("name='").append(name).append("', username='")
 				.append(username).append("', password='").append(password)
 				.append("'");
-		
+
 		return sb.toString();
 	}
 }

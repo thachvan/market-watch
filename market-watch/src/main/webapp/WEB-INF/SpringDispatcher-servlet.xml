@@ -41,9 +41,9 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>ea.mw.model.Symbol</value>
 				<value>ea.mw.model.PortfolioItem</value>
 				<value>ea.mw.model.User</value>
+				<value>ea.mw.model.Symbol</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

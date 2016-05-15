@@ -26,14 +26,15 @@
 					<label class="message">${message}</label>
 				</c:if>
 				<label for="inputUsername" class="sr-only">Username</label>
-				<input type="text" id="inputUsername" class="form-control" placeholder="Username" autofocus value="${username}">
+				<input type="text" name="username" id="username" class="form-control" placeholder="Username" autofocus value="${username}">
 				<label for="inputPassword" class="sr-only">Password</label>
-				<input type="password" id="inputPassword" class="form-control" placeholder="Password">
+				<input type="password" name="password" id="password" class="form-control" placeholder="Password">
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" value="remember-me"> Remember me
 					</label>
 				</div>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
 				<br>
 				<a href="<%=request.getContextPath()%>/register">Create new account</a>
