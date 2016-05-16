@@ -1,7 +1,9 @@
 package ea.mw.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -32,9 +34,9 @@ public class User {
 	@NotEmpty
 	private String password;
 
-	@OneToMany
+	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "portfolio_item_id")
-	private List<PortfolioItem> portfolio;
+	private List<PortfolioItem> portfolio = new ArrayList<PortfolioItem>();
 
 	@Enumerated(EnumType.STRING)
 	private Role authority;
@@ -80,6 +82,14 @@ public class User {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public void addPortfolioItem(PortfolioItem item) {
+		portfolio.add(item);
+	}
+
+	public List<PortfolioItem> getPortfolio() {
+		return portfolio;
 	}
 
 	@Override

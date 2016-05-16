@@ -27,20 +27,27 @@
 
 <body>
 	<div class="container">
-		<h1>Portfolio</h1>
-		<table id="example" class="display" cellspacing="0" width="100%">
+		<h2 class="form-front-heading">Portfolio</h2>
+		<table id="portfolio" class="display" cellspacing="0" width="100%">
 			<thead>
 				<tr>
 					<th>Name</th>
 					<th>Ask</th>
 					<th>Bid</th>
-					<th>Open</th>
-					<th>Close</th>
-					<th>High</th>
-					<th>Low</th>
+					<th>Original Price</th>
+					<th>Volume</th>
+					<th>Profit</th>
 				</tr>
 			</thead>
 		</table>
+		<form class="form-front" action="/market-watch/portfolio/add"
+			method="post">
+			<label>Symbol</label> <select name="symbol" class="form-control">
+				<c:forEach var="portfolioItem" items="${portfolio}">
+					<option value="${portfolioItem.symbol.name}">${portfolioItem.symbol.name}</option>
+				</c:forEach>
+			</select>
+		</form>
 	</div>
 	<!-- /container -->
 	<script>
@@ -48,7 +55,7 @@
 			$('#example').DataTable({
 				"processing" : true,
 				"serverSide" : true,
-				"ajax" : "../server_side/scripts/server_processing.php"
+				"ajax" : "/market-watch/"
 			});
 		});
 	</script>

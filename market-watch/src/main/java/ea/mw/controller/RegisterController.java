@@ -34,7 +34,7 @@ public class RegisterController {
 		if (!bindingResult.hasErrors()) {
 			user.setAuthority(Role.ROLE_USER);
 			user.setEnabled(true);
-			userService.addUser(user);
+			userService.saveUser(user);
 			redirectAttributes.addFlashAttribute("username",
 					user.getUsername());
 			redirectAttributes.addFlashAttribute("message",

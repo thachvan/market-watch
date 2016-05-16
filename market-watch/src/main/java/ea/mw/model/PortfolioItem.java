@@ -1,5 +1,6 @@
 package ea.mw.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,7 +12,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class PortfolioItem {
-	private enum TradingType {
+	public enum TradingType {
 		Sell, Buy
 	};
 
@@ -19,16 +20,24 @@ public class PortfolioItem {
 	@GeneratedValue
 	private int id;
 
-	@OneToOne
+	@OneToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "symbol_id")
 	private Symbol symbol;
 
-	@Column(name="original_price")
+	@Column(name = "original_price")
 	private double orginalPrice;
 	private double volume;
 
 	@Enumerated(EnumType.STRING)
 	private TradingType type;
+
+	public PortfolioItem(Symbol symbol, double volume, double originalPrice,
+			TradingType type) {
+		this.symbol = symbol;
+		this.volume = volume;
+		this.orginalPrice = originalPrice;
+		this.type = type;
+	}
 
 	public TradingType getType() {
 		return type;
