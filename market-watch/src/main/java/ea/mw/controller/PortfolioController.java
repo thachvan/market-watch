@@ -1,8 +1,8 @@
 package ea.mw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,17 +18,18 @@ import ea.mw.service.UserService;
 @RequestMapping("/portfolio")
 public class PortfolioController {
 	@Autowired
-	UserService userService;
-	
-	User user;
+	private UserService userService;
+
+	private User user;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String displayPortfolio(ModelMap modelMap) {
-		Authentication authentication = SecurityContextHolder.getContext()
-				.getAuthentication();
-		user = (User) authentication.getPrincipal();
+		UserDetails currentUserDetails = (UserDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal();
+		user = userService.getUser(currentUserDetails.getUsername());
 		modelMap.addAttribute("portfolio", userService.getPortfolio(user));
-		
+		modelMap.addAttribute("name", user.getName());
+
 		return "portfolio";
 	}
 

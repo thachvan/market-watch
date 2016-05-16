@@ -2,6 +2,7 @@ package ea.mw.dao;
 
 import java.io.IOException;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +38,17 @@ public class UserDaoImpl implements UserDao {
 
 		saveUser(user);
 	}
-	
+
 	public void saveUser(User user) {
 		Session session = sessionFactory.openSession();
 		session.persist(user);
 		session.flush();
+	}
+
+	public User getUser(String username) {
+		Session session = sessionFactory.openSession();
+		Query query = session
+				.createQuery("FROM User WHERE Username = '" + username + "'");
+		return (User) query.uniqueResult();
 	}
 }

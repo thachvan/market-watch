@@ -23,7 +23,7 @@
 		<sec:intercept-url pattern='/symbolUpdate' access="hasRole('ROLE_UPDATER')" />
 		<sec:form-login login-page="/login"
 			authentication-failure-url="/login?error" default-target-url="/portfolio" />
-		<sec:logout logout-success-url="/login" />
+		<sec:logout logout-url="/logout" logout-success-url="/login" />
 	</sec:http>
 
 	<sec:authentication-manager>

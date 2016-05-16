@@ -28,4 +28,8 @@ public class UserServiceImpl implements UserService {
 		return user.getPortfolio();
 	}
 
+	public User getUser(String username) {
+		return userDao.getUser(username);
+	}
+
 }

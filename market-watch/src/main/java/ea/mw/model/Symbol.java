@@ -1,16 +1,11 @@
 package ea.mw.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Symbol {
 	@Id
-	@GeneratedValue
-	private int id;
-	@Column(unique = true)
 	private String name;
 
 	private double bid;
@@ -18,6 +13,12 @@ public class Symbol {
 
 	public Symbol(String name) {
 		this.name = name;
+	}
+
+	public Symbol(String name, double ask, double bid) {
+		this.name = name;
+		this.ask = ask;
+		this.bid = bid;
 	}
 
 	public String getName() {
