@@ -24,7 +24,7 @@ function startstop() {
 	}
 	else {
 		button.value="Stop";
-		timerUpdate = setInterval(function(){updateSymbols('GOLD', 1104.2, 1103.9);}, 5000);
+		timerUpdate = setInterval(function(){updateSymbols('GOLD', 1104.2, 1103.9);}, 1000);
 		timerGet = setInterval(showRates, 1000);
 	}
 }

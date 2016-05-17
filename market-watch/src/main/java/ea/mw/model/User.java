@@ -10,7 +10,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -34,8 +33,7 @@ public class User {
 	@NotEmpty
 	private String password;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "portfolio_item_id")
+	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
 	private List<PortfolioItem> portfolio = new ArrayList<PortfolioItem>();
 
 	@Enumerated(EnumType.STRING)
@@ -85,6 +83,10 @@ public class User {
 	}
 
 	public void addPortfolioItem(PortfolioItem item) {
+		if (portfolio == null) {
+			portfolio = new ArrayList<PortfolioItem>();
+		}
+		
 		portfolio.add(item);
 	}
 
