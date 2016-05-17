@@ -1,6 +1,5 @@
 package ea.mw.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -25,7 +24,7 @@ public class PortfolioItem {
 	@JoinColumn(name = "userId")
 	private User user;
 
-	@OneToOne(cascade = { CascadeType.ALL })
+	@OneToOne
 	@JoinColumn(name = "symbol_id")
 	private Symbol symbol;
 
@@ -35,6 +34,9 @@ public class PortfolioItem {
 
 	@Enumerated(EnumType.STRING)
 	private TradingType type;
+	
+	public PortfolioItem() {
+	}
 
 	public PortfolioItem(Symbol symbol, double volume, double originalPrice,
 			TradingType type) {

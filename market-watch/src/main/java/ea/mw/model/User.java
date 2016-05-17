@@ -86,7 +86,7 @@ public class User {
 		if (portfolio == null) {
 			portfolio = new ArrayList<PortfolioItem>();
 		}
-		
+		item.setUser(this);
 		portfolio.add(item);
 	}
 

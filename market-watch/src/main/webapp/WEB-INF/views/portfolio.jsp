@@ -88,14 +88,16 @@
 		</div>
 		<div class="row"><br><br></div>
 		<div class="row">
-			<table data-toggle="table" data-url="/market-watch/portfolio/get">
+			<table data-toggle="table" data-url="/market-watch/portfolio/getjson">
 				<thead>
 					<tr>
-						<th data-field="symbol">Symbol</th>
+						<th data-field="symbolName">Symbol</th>
 						<th data-field="volume">Volume</th>
 						<th data-field="originalPrice">Original price</th>
+						<th data-field="type">Trading type</th>
 						<th data-field="ask">Ask</th>
 						<th data-field="bid">Bid</th>
+						<th data-field="profit">Profit</th>
 					</tr>
 				</thead>
 			</table>
