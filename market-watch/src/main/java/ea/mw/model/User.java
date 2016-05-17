@@ -17,7 +17,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class User {
 	public enum Role {
-		ROLE_USER, ROLE_UPDATER
+		ROLE_USER, ROLE_ADMIN
 	};
 
 	@Id
@@ -34,7 +34,7 @@ public class User {
 	@NotEmpty
 	private String password;
 
-	@OneToMany(cascade = { CascadeType.ALL })
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "portfolio_item_id")
 	private List<PortfolioItem> portfolio = new ArrayList<PortfolioItem>();
 

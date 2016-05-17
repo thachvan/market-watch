@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class PortfolioItem {
 	public enum TradingType {
-		Sell, Buy
+		SELL, BUY
 	};
 
 	@Id

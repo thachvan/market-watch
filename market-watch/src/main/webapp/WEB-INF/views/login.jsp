@@ -20,14 +20,14 @@
 	
 	<body>
 		<div class="container">
-			<form class="form-front" action="/market-watch/login" method="post">
-				<h2 class="form-front-heading">Log in</h2>
+			<form class="form-standard" action="/market-watch/login" method="post">
+				<h2 class="form-standard-heading">Log in</h2>
 				<c:if test="${message != null}">
 					<label class="message">${message}</label>
 				</c:if>
-				<label for="inputUsername" class="sr-only">Username</label>
+				<label for="username" class="sr-only">Username</label>
 				<input type="text" name="username" id="username" class="form-control" placeholder="Username" autofocus value="${username}">
-				<label for="inputPassword" class="sr-only">Password</label>
+				<label for="password" class="sr-only">Password</label>
 				<input type="password" name="password" id="password" class="form-control" placeholder="Password">
 				<div class="checkbox">
 					<label>

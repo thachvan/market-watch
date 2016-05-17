@@ -12,6 +12,7 @@ import ea.mw.model.PortfolioItem;
 import ea.mw.model.PortfolioItem.TradingType;
 import ea.mw.model.Symbol;
 import ea.mw.model.User;
+import ea.mw.service.SymbolService;
 import ea.mw.service.UserService;
 
 @Controller
@@ -19,29 +20,41 @@ import ea.mw.service.UserService;
 public class PortfolioController {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private SymbolService synbolService;
 
 	private User user;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String displayPortfolio(ModelMap modelMap) {
-		UserDetails currentUserDetails = (UserDetails) SecurityContextHolder
-				.getContext().getAuthentication().getPrincipal();
-		user = userService.getUser(currentUserDetails.getUsername());
+		updateAuthenticatedUser();
 		modelMap.addAttribute("portfolio", userService.getPortfolio(user));
 		modelMap.addAttribute("name", user.getName());
+		modelMap.addAttribute("symbols", synbolService.listSymbols());
 
 		return "portfolio";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String addPortfolio(@RequestParam("name") String name,
-			@RequestParam(value = "volume", required = false) Double volume,
-			@RequestParam(value = "originalPrice", required = false) Double originalPrice,
-			@RequestParam(value = "type", required = false) TradingType type) {
-		PortfolioItem item = new PortfolioItem(new Symbol(name), volume,
-				originalPrice, type);
+			@RequestParam(value = "volume", required = false) double volume,
+			@RequestParam(value = "originalPrice", required = false) double originalPrice,
+			@RequestParam(value = "type") String type) {
+		UserDetails currentUserDetails = (UserDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal();
+		user = userService.getUser(currentUserDetails.getUsername());
+		TradingType tradingType = TradingType.valueOf(type);
+		PortfolioItem item = new PortfolioItem(new Symbol(name), volume, originalPrice, tradingType);
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+		System.out.println(user);
 		userService.addPortfolioItem(user, item);
 
-		return "portfolio";
+		return "redirect:/portfolio";
+	}
+	
+	private void updateAuthenticatedUser() {
+		UserDetails currentUserDetails = (UserDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal();
+		user = userService.getUser(currentUserDetails.getUsername());
 	}
 }

@@ -18,58 +18,90 @@
 <!-- Form -->
 <link href="/market-watch/resources/css/form.css" rel="stylesheet">
 
-<!-- Table -->
+<!-- JQuery -->
+<script src="/market-watch/resources/js/jquery-1.12.0.min.js"></script>
+
+<!-- Bootstrap table -->
+<link href="/market-watch/resources/css/bootstrap-table.css" rel="stylesheet">
+<script src="/market-watch/resources/js/bootstrap-table.js"></script>
+<script src="/market-watch/resources/js/bootstrap-table-en-US.js"></script>
+
+<!-- DataTables -->
 <link href="/market-watch/resources/css/jquery.dataTables.min.css"
 	rel="stylesheet">
-
-<script src="/market-watch/resources/js/jquery-1.12.0.min.js"></script>
 <script src="/market-watch/resources/js/jquery.dataTables.min.js"></script>
 
 </head>
 
 <body>
 	<div class="container">
-		<c:url var="logoutUrl" value="/logout" />
-		<form action="${logoutUrl}" method="post">
-			<label>Welcome ${name} </label> <input type="submit" value="Log out" />
-			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
-		</form>
-
-		<h2 class="form-front-heading">Portfolio</h2>
-
-		<form class="form-front" action="/market-watch/portfolio/add"
-			method="post">
-			<label>Symbol</label> <select name="symbol" class="form-control">
-				<c:forEach var="portfolioItem" items="${portfolio}">
-					<option value="${portfolioItem.symbol.name}">${portfolioItem.symbol.name}</option>
-				</c:forEach>
-			</select>
-		</form>
-
-		<table id="portfolio" class="display" cellspacing="0" width="100%">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Ask</th>
-					<th>Bid</th>
-					<th>Original Price</th>
-					<th>Volume</th>
-					<th>Profit</th>
-				</tr>
-			</thead>
-		</table>
+		<div class="row">
+			<div class="col-md-12"></div>
+				<div class="pull-right">
+					<c:url var="logoutUrl" value="/logout" />
+					<form action="${logoutUrl}" method="post">
+						<label>Welcome ${name} </label> <input type="submit" value="Log out" />
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+					</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div style="text-align: center">
+					<h2 class="form-standard-heading">Portfolio</h2>
+				</div>
+			</div>
+		</div>
+		<div class="row"><br></div>
+		<div class="row">
+			<form class="form-inline" action="/market-watch/portfolio/add"
+				method="post">
+				<div class="form-group">
+					<label for="name">Symbol</label>
+					<select name="name" class="form-control">
+						<c:forEach var="symbol" items="${symbols}">
+							<option value="${symbol.name}">${symbol.name}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="volume">Volume</label>
+					<input name="volume" type="number" step="0.01" class="form-control" />
+				</div>
+				<div class="form-group">
+					<label for="originalPrice">Original price</label>
+					<input name="originalPrice" type="number" step="0.01" class="form-control" />
+				</div>
+				<div class="form-group">
+					<label for="type">Type</label>
+					<select name="type" class="form-control">
+						<option value="BUY">Buy</option>
+						<option value="SELL">Sell</option>
+					</select>
+				</div>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				<div class="form-group">
+					<button class="btn btn-primary" type="submit">Add</button>
+				</div>
+			</form>
+		</div>
+		<div class="row"><br><br></div>
+		<div class="row">
+			<table data-toggle="table" data-url="/market-watch/portfolio/get">
+				<thead>
+					<tr>
+						<th data-field="symbol">Symbol</th>
+						<th data-field="volume">Volume</th>
+						<th data-field="originalPrice">Original price</th>
+						<th data-field="ask">Ask</th>
+						<th data-field="bid">Bid</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
 	</div>
 	<!-- /container -->
-	<script>
-		$(document).ready(function() {
-			$('#example').DataTable({
-				"processing" : true,
-				"serverSide" : true,
-				"ajax" : "/market-watch/"
-			});
-		});
-	</script>
 </body>
 
 </html>

@@ -11,6 +11,9 @@ public class Symbol {
 	private double bid;
 	private double ask;
 
+	public Symbol() {
+	}
+
 	public Symbol(String name) {
 		this.name = name;
 	}

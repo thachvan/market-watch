@@ -2,35 +2,42 @@ package ea.mw.dao;
 
 import java.util.List;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import ea.mw.model.Symbol;
 
 @Repository
-@Transactional
 public class SymbolDaoImpl implements SymbolDao {
 
-	@Autowired
-	private SessionFactory sessionFactory;
+	@PersistenceContext
+	private EntityManager entityManager;
 
-	public void saveSymbol(Symbol symbol) {
-		Session session = sessionFactory.openSession();
-		session.persist(symbol);
-		session.flush();
+	public EntityManager getEntityManager() {
+		return entityManager;
 	}
 
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+
+	@Transactional
+	public void saveSymbol(Symbol symbol) {
+		entityManager.persist(symbol);
+		entityManager.flush();
+	}
+
+	@Transactional
 	public List<Symbol> listSymbols() {
-		Session session = sessionFactory.openSession();
-		Query query = session.createQuery("FROM Symbol");
-		
+		Query query = entityManager.createQuery("FROM Symbol");
+
 		@SuppressWarnings("unchecked")
-		List<Symbol> symbolList = query.list();
-		
+		List<Symbol> symbolList = query.getResultList();
+
 		return symbolList;
 	}
 }

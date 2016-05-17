@@ -18,8 +18,8 @@
 	
 	<body>
 		<div class="container">
-			<form:form modelAttribute="user" class="form-front" action="/market-watch/register" method="post">
-				<h2 class="form-front-heading">Register</h2>
+			<form:form modelAttribute="user" class="form-standard" action="/market-watch/register" method="post">
+				<h2 class="form-standard-heading">Register</h2>
 				<label for="inputName" class="sr-only">Name</label>
 				<form:errors path="name" cssClass="error"/>
 				<input name="name" type="text" id="inputName" class="form-control" placeholder="Name" autofocus>
