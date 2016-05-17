@@ -90,7 +90,8 @@
 		<div class="row">
 			<table data-toggle="table" data-url="/market-watch/portfolio/getjson">
 				<thead>
-					<tr>
+					<tr class="clickable-row" data-click-to-select="true">
+						<th data-field="state" data-checkbox="true"></th>
 						<th data-field="symbolName">Symbol</th>
 						<th data-field="volume">Volume</th>
 						<th data-field="originalPrice">Original price</th>
