@@ -18,6 +18,16 @@ public class SymbolServiceImpl implements SymbolService {
 		symbolDao.saveSymbol(symbol);
 	}
 
+	public Symbol getSymbol(String name) {
+		Symbol result = symbolDao.getSymbol(name);
+
+		if (result == null) { // symbol does not exist
+			return new Symbol(name, 0, 0);
+		}
+
+		return result;
+	}
+
 	public List<Symbol> listSymbols() {
 		return symbolDao.listSymbols();
 	}

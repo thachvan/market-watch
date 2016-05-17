@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import ea.mw.model.Symbol;
 import ea.mw.service.SymbolService;
 
@@ -20,5 +22,10 @@ public class SymbolController {
 			@RequestParam(value = "bid") Double bid) {
 		Symbol symbol = new Symbol(name, ask, bid);
 		symbolService.saveSymbol(symbol);
+	}
+
+	@RequestMapping(value = "/get", method = RequestMethod.GET)
+	public @ResponseBody Symbol getSymbol(@RequestParam("name") String name) {
+		return symbolService.getSymbol(name);
 	}
 }

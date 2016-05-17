@@ -3,6 +3,7 @@ package ea.mw.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -29,6 +30,21 @@ public class SymbolDaoImpl implements SymbolDao {
 	public void saveSymbol(Symbol symbol) {
 		entityManager.persist(symbol);
 		entityManager.flush();
+	}
+
+	@Transactional
+	public Symbol getSymbol(String name) {
+		Symbol result;
+		Query query = entityManager
+				.createQuery("FROM Symbol WHERE name='" + name + "'");
+
+		try {
+			result = (Symbol) query.getSingleResult();
+		} catch (NoResultException e) {
+			result = null;
+		}
+		
+		return result;
 	}
 
 	@Transactional

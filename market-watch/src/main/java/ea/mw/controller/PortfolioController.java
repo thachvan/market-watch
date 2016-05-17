@@ -45,8 +45,6 @@ public class PortfolioController {
 		user = userService.getUser(currentUserDetails.getUsername());
 		TradingType tradingType = TradingType.valueOf(type);
 		PortfolioItem item = new PortfolioItem(new Symbol(name), volume, originalPrice, tradingType);
-		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-		System.out.println(user);
 		userService.addPortfolioItem(user, item);
 
 		return "redirect:/portfolio";
