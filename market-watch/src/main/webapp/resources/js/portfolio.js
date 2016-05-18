@@ -16,9 +16,5 @@ function removePortfolioItem() {
 		type : "GET",
 		url : "http://localhost:8080/market-watch/portfolio/delete?ids=" + ids,
 		async: false,
-		success : refresh()
 	});
-}
-
-function refresh() {
 }
