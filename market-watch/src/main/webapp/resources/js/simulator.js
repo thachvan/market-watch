@@ -7,10 +7,6 @@ function updateSymbols(symbolName, ask, bid) {
 	$.ajax({ type: "GET",
 		url: "http://localhost:8080/market-watch/symbol/update?name=" + symbolName + "&ask=" + ask + "&bid=" + bid,
 		async: false,
-        success : function(text)
-        {
-            alert(text);
-        }
 	});
 }
 

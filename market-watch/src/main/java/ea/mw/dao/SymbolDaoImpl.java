@@ -28,7 +28,7 @@ public class SymbolDaoImpl implements SymbolDao {
 
 	@Transactional
 	public void saveSymbol(Symbol symbol) {
-		entityManager.persist(symbol);
+		entityManager.merge(symbol);
 		entityManager.flush();
 	}
 

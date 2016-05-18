@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -93,10 +91,12 @@ public class PortfolioController {
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public void removePortfolioItem(@RequestParam("ids") String ids) {
 		updateAuthenticatedUser();
-		JOptionPane.showMessageDialog(null, ids);
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		System.out.println(ids);
 		List<String> items = Arrays.asList(ids.split("\\s*,\\s*"));
 		List<Integer> itemIds = new ArrayList<Integer>();
 		for (String item : items) {
+			System.out.println(item);
 			itemIds.add(Integer.parseInt(item));
 		}
 		userService.removePortfolioItem(user, itemIds);

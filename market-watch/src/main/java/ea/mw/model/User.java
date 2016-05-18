@@ -33,7 +33,7 @@ public class User {
 	@NotEmpty
 	private String password;
 
-	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<PortfolioItem> portfolio = new ArrayList<PortfolioItem>();
 
 	@Enumerated(EnumType.STRING)
@@ -91,8 +91,9 @@ public class User {
 	}
 
 	public void removePortfolioItem(List<Integer> ids) {
-		for (int i=0; i<portfolio.size(); i++) {
+		for (int i = 0; i < portfolio.size(); i++) {
 			if (ids.contains(portfolio.get(i).getId())) {
+				portfolio.get(i).setUser(null);
 				portfolio.remove(i);
 			}
 		}
