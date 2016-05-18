@@ -64,6 +64,7 @@ public class PortfolioController {
 		for (PortfolioItem item : portfolio) {
 			TableRecord record = new TableRecord();
 
+			record.setId(item.getId());
 			record.setSymbolName(item.getSymbol().getName());
 			record.setVolume(item.getVolume());
 			record.setOriginalPrice(item.getOrginalPrice());
@@ -72,12 +73,14 @@ public class PortfolioController {
 			record.setBid(item.getSymbol().getBid());
 			if (item.getType() == TradingType.BUY) {
 				record.setProfit(
-						item.getSymbol().getBid() - item.getOrginalPrice());
+						(item.getSymbol().getBid() - item.getOrginalPrice())
+								* item.getVolume());
 			} else {
 				record.setProfit(
-						item.getSymbol().getAsk() - item.getOrginalPrice());
+						(item.getSymbol().getAsk() - item.getOrginalPrice())
+								* item.getVolume());
 			}
-			
+
 			records.add(record);
 		}
 

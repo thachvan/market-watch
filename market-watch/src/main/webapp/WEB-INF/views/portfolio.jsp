@@ -30,6 +30,7 @@
 <link href="/market-watch/resources/css/jquery.dataTables.min.css"
 	rel="stylesheet">
 <script src="/market-watch/resources/js/jquery.dataTables.min.js"></script>
+<script src="/market-watch/resources/js/portfolio.js"></script>
 
 </head>
 
@@ -88,10 +89,16 @@
 		</div>
 		<div class="row"><br><br></div>
 		<div class="row">
-			<table data-toggle="table" data-url="/market-watch/portfolio/getjson">
+			<div id="toolbar">
+				<button id="removeButton" class="btn btn-primary" onclick="removePortfolioItem()">Remove</button>
+			</div>
+		</div>
+		<div class="row">
+			<table id="portfolioTable" data-toolbar="#toolbar" data-toggle="table" data-url="/market-watch/portfolio/getjson">
 				<thead>
-					<tr class="clickable-row" data-click-to-select="true">
+					<tr>
 						<th data-field="state" data-checkbox="true"></th>
+						<th data-field="id">Id</th>
 						<th data-field="symbolName">Symbol</th>
 						<th data-field="volume">Volume</th>
 						<th data-field="originalPrice">Original price</th>
@@ -105,6 +112,7 @@
 		</div>
 	</div>
 	<!-- /container -->
+	
 </body>
 
 </html>

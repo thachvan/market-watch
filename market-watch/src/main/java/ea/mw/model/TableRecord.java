@@ -3,6 +3,7 @@ package ea.mw.model;
 import ea.mw.model.PortfolioItem.TradingType;
 
 public class TableRecord {
+	private int id;
 	private String symbolName;
 	private double volume;
 	private double originalPrice;
@@ -65,5 +66,13 @@ public class TableRecord {
 	
 	public void setProfit(double profit) {
 		this.profit = profit;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

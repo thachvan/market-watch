@@ -85,4 +85,8 @@ public class PortfolioItem {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	public int getId() {
+		return id;
+	}
 }
