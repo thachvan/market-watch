@@ -23,18 +23,6 @@ public class UserDaoImpl implements UserDao {
 		this.entityManager = entityManager;
 	}
 
-	/*
-	 * public void init() throws IOException { Symbol symbol = new
-	 * Symbol("XAU"); symbol.setAsk(1023); symbol.setBid(1025);
-	 * 
-	 * User user = new User(); user.setName("a"); user.setUsername("a");
-	 * user.setPassword("a"); user.setEnabled(true);
-	 * user.setAuthority(Role.ROLE_USER); user.addPortfolioItem( new
-	 * PortfolioItem(symbol, 1.5, 1002, TradingType.BUY));
-	 * 
-	 * saveUser(user); }
-	 */
-
 	@Transactional
 	public void saveUser(User user) {
 		entityManager.merge(user);

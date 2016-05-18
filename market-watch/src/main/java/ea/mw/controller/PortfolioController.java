@@ -1,7 +1,10 @@
 package ea.mw.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -42,7 +45,7 @@ public class PortfolioController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String addPortfolio(@RequestParam("name") String name,
+	public String addPortfolioItem(@RequestParam("name") String name,
 			@RequestParam(value = "volume", required = false) double volume,
 			@RequestParam(value = "originalPrice", required = false) double originalPrice,
 			@RequestParam(value = "type") String type) {
@@ -85,6 +88,18 @@ public class PortfolioController {
 		}
 
 		return records;
+	}
+
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public void removePortfolioItem(@RequestParam("ids") String ids) {
+		updateAuthenticatedUser();
+		JOptionPane.showMessageDialog(null, ids);
+		List<String> items = Arrays.asList(ids.split("\\s*,\\s*"));
+		List<Integer> itemIds = new ArrayList<Integer>();
+		for (String item : items) {
+			itemIds.add(Integer.parseInt(item));
+		}
+		userService.removePortfolioItem(user, itemIds);
 	}
 
 	private void updateAuthenticatedUser() {

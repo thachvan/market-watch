@@ -90,6 +90,14 @@ public class User {
 		portfolio.add(item);
 	}
 
+	public void removePortfolioItem(List<Integer> ids) {
+		for (int i=0; i<portfolio.size(); i++) {
+			if (ids.contains(portfolio.get(i).getId())) {
+				portfolio.remove(i);
+			}
+		}
+	}
+
 	public List<PortfolioItem> getPortfolio() {
 		return portfolio;
 	}

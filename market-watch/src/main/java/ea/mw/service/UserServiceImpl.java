@@ -37,4 +37,9 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUser(username);
 	}
 
+	public void removePortfolioItem(User user, List<Integer> ids) {
+		user.removePortfolioItem(ids);
+		saveUser(user);
+	}
+
 }
