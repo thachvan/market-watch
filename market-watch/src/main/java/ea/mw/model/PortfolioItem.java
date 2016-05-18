@@ -7,7 +7,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -19,10 +18,6 @@ public class PortfolioItem {
 	@Id
 	@GeneratedValue
 	private int id;
-
-	@ManyToOne
-	@JoinColumn(name = "userId")
-	private User user;
 
 	@OneToOne
 	@JoinColumn(name = "symbol_id")
@@ -76,14 +71,6 @@ public class PortfolioItem {
 
 	public void setSymbol(Symbol symbol) {
 		this.symbol = symbol;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 	
 	public int getId() {
